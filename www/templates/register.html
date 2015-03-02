@@ -1,0 +1,35 @@
+<ion-view view-title='Register!'>
+  <ion-content>
+    <form name='registerForm' ng-submit="register(user)">
+      <label class='item item-input'>
+        <span class='input-label'>First Name</span>
+        <input type='text' name='firstName' placeholder='First Name' ng-model='user.name.first' required/>
+      </label>
+
+      <label class='item item-input'>
+        <span class='input-label'>Last Name</span>
+        <input type='text' name='lastName' placeholder='Last Name' ng-model='user.name.last' required/>
+      </label>
+
+      <label class='item item-input'>
+        <span class='input-label'>E-Mail</span>
+        <input type='email' name='email' placeholder='E-Mail' ng-model='user.email' required/>
+      </label>
+
+      <label class='item item-input'>
+        <span class='input-label'>Password</span>
+        <input type='password' name='password' placeholder='Password' ng-model='user.password' required/>
+      </label>
+
+      <label class='item item-input'>
+        <span class='input-label'>Confirm Password</span>
+        <input type='password' name='confirmPassword' placeholder='Confirm Password' ng-model='passwordConfirm' ng-keyup='passwordCheck()' required/>
+      </label>
+      <p ng-show='passwordMatch'>Passwords Don't Match!</p>
+      <label>
+        <button ng-disabled='registerForm.$invalid' type='submit' class='button button-block button-positive'>Register</button>
+      </label>
+    </form>
+    <a href='/#/app/login' class='button button-clear'>Log In Here</a>
+  </ion-content>
+</ion-view view-title>
