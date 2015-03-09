@@ -2,12 +2,14 @@ angular.module('Remember')
 
 .controller('LoginCtrl', AuthCtrl);
 
-function AuthCtrl(authService, $state, $scope) {
+function AuthCtrl(authService, $state, $scope, $location) {
 
   $scope.login = function login(user) {
     authService.login(user, function(usr, err) {
       if(!err) {
-        $state.go('app.playlists');
+        usr.uid = usr.uid.replace('simplelogin:', '');
+        console.log('user', usr);
+        $state.go('app.home/' + usr.uid);
       } else {
 
         //TODO: make this a div ng-show

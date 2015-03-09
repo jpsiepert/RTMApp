@@ -1,0 +1,15 @@
+<ion-view view-title="Remember This Moment">
+  <ion-content>
+    <h1>HOME!</h1>
+    <textarea class="memory-input" ng-model="memory"></textarea>
+    <button ng-click="addMemory()">Remember!</button>
+
+    <div class="row" >
+      <div class="col-sm-12" ng-repeat="memory in memories">
+        <p>{{memory.text}}</p>
+        <br/>
+        <p>{{memory.date | date}}</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

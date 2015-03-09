@@ -47,16 +47,21 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.home', {
+      url: "/home/:id",
       views: {
         'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/home.html",
+          controller: 'HomeCtrl',
+          resolve: {
+            memRef: function(firebaseService, $route) {
+              console.log('$route', $route);
+              firebaseService.getMemories($route.current.params.userId);
+            }
+          }
         }
       }
     })
-
   .state('app.single', {
     url: "/playlists/:playlistId",
     views: {

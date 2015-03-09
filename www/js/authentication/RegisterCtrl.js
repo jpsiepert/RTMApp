@@ -13,7 +13,7 @@ function RegisterCtrl(authService, $scope, $state) {
         $scope.invalidUser = true;
         console.log('err', err);
       } else {
-        $state.go('app.playlists');
+        $state.go('app.home/' + authUser.userId);
       }
     });
   };

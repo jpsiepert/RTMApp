@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+
+input .ng-dirty:focus {
+  border: 1px solid yellow;
+}
+
+input .ng-valid:focus {
+  border: 1px solid green;
+}
+
+input .ng-invalid:focus {
+  border: 1px solid red;
+}
+
+.memory-input {
+  border: 1px solid green;
+}

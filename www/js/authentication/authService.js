@@ -7,12 +7,9 @@ function authService($firebase) {
   var ref = new Firebase(firebaseUrl);
   var auth = this;
 
-  var randId = function() {
-    return Math.floor(Math.random()*365);
-  };
 
   var setUser = function(user){
-    //user.uid = user.uid.replace('simplelogin:', '');
+    user.uid = user.uid.replace('simplelogin:', '');
     localStorage.setItem('user', JSON.stringify(user));
   };
 
@@ -41,10 +38,10 @@ function authService($firebase) {
       } else {
           console.log("Successfully created user account with uid:", userData.uid);
           userData.name = user.name;
-          userData.userId = userData.uid.replace('simplelogin:', '') + randId();
+          userData.userId = userData.uid.replace('simplelogin:', '');
           console.log('userData', userData);
           ref.child('users').child(userData.uid.replace('simplelogin:', '')).set(userData);
-          auth.login(user, cb);
+          auth.login(userData, cb);
       }
     });
   };
