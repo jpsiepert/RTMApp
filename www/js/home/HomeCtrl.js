@@ -2,7 +2,7 @@ angular.module('Remember')
 
 .controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl($scope, $state, firebaseService, authService) {
+function HomeCtrl($scope, $state, firebaseService, authService, $timeout) {
   var mem = this;
   $scope.user = {};
   mem.init = function init () {

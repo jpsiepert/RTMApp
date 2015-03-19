@@ -13,5 +13,9 @@ input .ng-invalid:focus {
 }
 
 .memory-input {
-  border: 1px solid #886AEA;
+  background: #fff;
+}
+
+.memory-card {
+  color: #43CEE6;
 }
