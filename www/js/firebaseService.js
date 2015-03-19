@@ -1,4 +1,4 @@
-app.module('Remember')
+angular.module('Remember')
 
 .service('firebaseService', firebaseService);
 

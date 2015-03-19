@@ -45,4 +45,6 @@ function authService($firebase) {
       }
     });
   };
+
+  auth.isAuthorized = ref.getAuth();
 }

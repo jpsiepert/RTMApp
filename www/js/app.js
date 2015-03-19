@@ -20,7 +20,15 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
   });
 })
 
+
+
 .config(function($stateProvider, $urlRouterProvider) {
+
+  // var auth = {
+  //   check: function (authService) {
+  //     return authService.isAuthorized();
+  //   }
+  // };
   $stateProvider
 
   .state('app', {
@@ -29,16 +37,6 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
   })
-
-  .state('app.search', {
-    url: "/search",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/search.html"
-      }
-    }
-  })
-
   .state('app.browse', {
     url: "/browse",
     views: {
@@ -48,29 +46,14 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
     }
   })
     .state('app.home', {
-      url: "/home/:id",
+      url: "/app/home",
       views: {
         'menuContent': {
           templateUrl: "templates/home.html",
-          controller: 'HomeCtrl',
-          resolve: {
-            memRef: function(firebaseService, $route) {
-              console.log('$route', $route);
-              firebaseService.getMemories($route.current.params.userId);
-            }
-          }
+          controller: 'HomeCtrl as mem'
         }
       }
     })
-  .state('app.single', {
-    url: "/playlists/:playlistId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
-      }
-    }
-  })
   .state('app.register', {
     url: '/register',
     views: {
@@ -90,5 +73,5 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/register');
+  $urlRouterProvider.otherwise('/app/login');
 });

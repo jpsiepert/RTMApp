@@ -2,11 +2,14 @@ angular.module('Remember')
 
 .controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl($scope, $state, memRef) {
+function HomeCtrl($scope, $state, firebaseService) {
+  var mem = this;
 
-  $scope.memories = memRef;
+  mem.memories = firebaseService.getMemories(5);
 
-  $scope.addMemory = function() {
-    $scope.memories.$add($scope.memory);
+  mem.addMemory = function() {
+    mem.memories.$add(mem.memory);
+    mem.memory = '';
   };
+
 }
