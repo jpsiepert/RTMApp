@@ -1,14 +1,14 @@
 <ion-view view-title="Remember This Moment">
   <ion-content>
     <h1>HOME!</h1>
-    <textarea class="memory-input" ng-model="mem.memory"></textarea>
-    <button ng-click="mem.addMemory(memory)">Remember!</button>
+    <textarea class="memory-input" ng-model="mem.memory.text"></textarea>
+    <button class="button button-block button-royal" ng-click="mem.addMemory(memory)">Remember!</button>
 
     <div class="row" ng-repeat="mmry in mem.memories">
       <div class="col-sm-12">
-        <p>{{mmry}}</p>
-        <br/>
+        <p>{{mmry.text}}</p>
         <p>{{mmry.date | date}}</p>
+        <hr>
       </div>
     </div>
   </ion-content>

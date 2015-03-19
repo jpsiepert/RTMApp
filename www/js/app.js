@@ -35,7 +35,7 @@ angular.module('Remember', ['ionic', 'starter.controllers', 'firebase'])
     url: "/app",
     abstract: true,
     templateUrl: "templates/menu.html",
-    controller: 'AppCtrl'
+    controller: 'MenuCtrl'
   })
   .state('app.browse', {
     url: "/browse",

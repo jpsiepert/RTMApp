@@ -46,5 +46,10 @@ function authService($firebase) {
     });
   };
 
-  auth.isAuthorized = ref.getAuth();
+  auth.checkAuth = ref.getAuth();
+
+  auth.logout = function(cb) {
+    ref.unauth();
+    cb();
+  };
 }
