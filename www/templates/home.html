@@ -1,5 +1,9 @@
 <ion-view view-title="Remember This Moment">
   <ion-content>
+  <div class="bar bar-header bar-calm">
+    <h1 class="title">Enjoy your memories, {{mem.user.name.first}}!</h1>
+  </div>
+  <br/><br/>
     <div class="list">
       <div class="card item item-input-inset">
         <label class="item-input-wrapper memory-input">
@@ -9,6 +13,7 @@
         <button class="button button-small button-royal" ng-click="mem.addMemory(memory)">
           Remember!
         </button>
+          <button class="button button-icon icon ion-camera" ng-click="mem.upload()"></button>
       </div>
   </div>
 

@@ -11,4 +11,8 @@ function firebaseService ($firebase) {
   this.getMemories = function(userId) {
     return $firebase(new Firebase(firebaseUrl + 'users/' + userId + '/memories')).$asArray();
   };
+
+  this.getUser = function(userId) {
+    return $firebase(new Firebase(firebaseUrl + 'users/' + userId)).$asObject();
+  };
 }

@@ -2,22 +2,28 @@ angular.module('Remember')
 
 .controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl($scope, $state, firebaseService, authService, $timeout) {
+function HomeCtrl($scope, $state, firebaseService, $ionicHistory, authService, $timeout, $cordovaCamera) {
   var mem = this;
-  $scope.user = {};
-  mem.init = function init () {
-    var userAuth = authService.checkAuth;
-    console.log(userAuth);
-    if(userAuth) {
-      $scope.user.id = userAuth.uid.replace('simplelogin:', '');
-    } else {
-      $state.go('app.login');
-    }
-  }();
+  mem.user = {};
+  
 
-  console.log('$scope.user', $scope.user);
+  var checkAuth = function() {
+    authService.checkAuth(function(userAuth) {
+      if(userAuth) {
+        $ionicHistory.clearHistory();
+        var id = userAuth.uid.replace('simplelogin:', '');
+        mem.user = firebaseService.getUser(id);
+      } else {
+        $state.go('app.login');
+      }
+    });
+  };
 
-  mem.memories = firebaseService.getMemories($scope.user.id);
+  checkAuth();
+
+  console.log('mem.user', mem.user);
+
+  mem.memories = firebaseService.getMemories(mem.user.$id);
 
   mem.addMemory = function() {
     mem.memory.date = Firebase.ServerValue.TIMESTAMP;
@@ -25,6 +31,27 @@ function HomeCtrl($scope, $state, firebaseService, authService, $timeout) {
     mem.memory = '';
   };
 
+
+  mem.upload = function() {
+    var options = {
+        quality : 75,
+        destinationType : Camera.DestinationType.DATA_URL,
+        sourceType : Camera.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: Camera.EncodingType.JPEG,
+        popoverOptions: CameraPopoverOptions,
+        targetWidth: 500,
+        targetHeight: 500,
+        saveToPhotoAlbum: false
+    };
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+        mem.memories.$add({image: imageData}).then(function() {
+            alert("Image has been uploaded");
+        });
+    }, function(error) {
+        console.error(error);
+    });
+  };
 
 
 }

@@ -9,7 +9,6 @@ function authService($firebase) {
 
 
   var setUser = function(user){
-    user.uid = user.uid.replace('simplelogin:', '');
     localStorage.setItem('user', JSON.stringify(user));
   };
 
@@ -46,7 +45,9 @@ function authService($firebase) {
     });
   };
 
-  auth.checkAuth = ref.getAuth();
+  auth.checkAuth = function(cb){
+    cb(ref.getAuth());
+  };
 
   auth.logout = function(cb) {
     ref.unauth();
